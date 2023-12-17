@@ -1,4 +1,5 @@
 import 'package:country_picker/src/country_parser.dart';
+import 'package:country_picker/src/extensions.dart';
 import 'package:country_picker/src/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -130,9 +131,9 @@ class Country {
         countryCode.toLowerCase().startsWith(_query.toLowerCase()) ||
         (localizations
                 ?.countryName(countryCode: countryCode)
-                ?.toLowerCase()
+                ?.replaceArabicCharacters.toLowerCase()
                 .split(' ')
-            .any((word) => word.startsWith(query.toLowerCase())) ??
+            .any((word) => word.startsWith(query.replaceArabicCharacters.toLowerCase())) ??
             false);
   }
 
@@ -159,3 +160,5 @@ class Country {
   ///```Text(country.flagEmoji)```
   String get flagEmoji => Utils.countryCodeToEmoji(countryCode);
 }
+
+
